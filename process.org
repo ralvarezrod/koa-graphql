@@ -97,4 +97,19 @@
 *** Test on browser
     * URL: http://localhost:3000
 *** Create github repo and project
-
+   #+BEGIN_SRC sh
+     git remote add origin https://github.com/ralvarezrod/koa-graphql.git
+   #+END_SRC
+*** Commit changes
+   #+BEGIN_SRC sh
+     git add *
+     git commit -m "stage 1 completed"
+   #+END_SRC
+*** Checkout "release branch"
+   #+BEGIN_SRC sh
+     git checkout -b stage1
+   #+END_SRC
+*** Push all to github repo
+   #+BEGIN_SRC sh
+     git push --all origin
+   #+END_SRC

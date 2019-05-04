@@ -1,0 +1,100 @@
+* Process  <2019-05-03 vie> 
+** Creating first directory structure
+   Created the folder koa-graphql, then, inside, created the __tests__ and src/server directories.
+** Init the npm project
+   #+BEGIN_SRC sh
+     npm init -y
+   #+END_SRC
+** Init the git repo
+   #+BEGIN_SRC sh
+     git init
+   #+END_SRC
+** Create .gitignore
+   * Add node_modules
+** First commit
+   #+BEGIN_SRC sh
+     git add *
+     git commit -m "initial commit"
+   #+END_SRC
+** Create and checkout develop branch
+   #+BEGIN_SRC sh
+     git checkout -b develop
+   #+END_SRC
+** Install Jest
+   #+BEGIN_SRC sh
+     yarn add --dev jest
+   #+END_SRC
+** Update package.json test script
+   #+BEGIN_SRC javascript
+       "scripts": {
+           "test": "jest"        
+       } 
+   #+END_SRC
+** Create simple control test to check jest is working allright
+   #+BEGIN_SRC javascript
+     const add = (a, b) => a + b
+
+     describe('Basic test to check testing suite is working', () => {
+         it('performs a simple add test', () => {
+             expect(add(1,2)).toBe(3)
+         })
+     })   
+   #+END_SRC
+** Run test 
+   #+BEGIN_SRC sh
+     yarn test
+   #+END_SRC
+** Commit changes
+   #+BEGIN_SRC sh
+     git add *
+     git commit -m "simple testing setted up"
+   #+END_SRC
+** Setting up es6 
+*** Following this guide:
+    * URL: https://medium.freecodecamp.org/how-to-enable-es6-and-beyond-syntax-with-node-and-express-68d3e11fe1ab
+*** Install npm-run-all for windows compatibility of the scripts to be written
+   #+BEGIN_SRC sh
+     yarn add npm-run-all
+   #+END_SRC
+*** Install babel and presets
+   #+BEGIN_SRC sh
+     yarn add --dev @babel/core @babel/cli @babel/preset-env @babel/node
+   #+END_SRC
+*** Create .babelrc file
+   #+BEGIN_SRC javascript
+     {
+         "presets": ["@babel/preset-env"]
+     }   
+   #+END_SRC
+*** Install koa
+   #+BEGIN_SRC sh
+     yarn add koa
+   #+END_SRC
+*** Add scripts to package.json
+   #+BEGIN_SRC javascript
+     "scripts": {
+       "test": "jest",
+       "server": "babel-node ./src/server",
+       "dev": "NODE_ENV=development npm-run-all server"
+     },
+   #+END_SRC
+*** Set up basic koa server for es6 testing
+   #+BEGIN_SRC javascript
+     import Koa from 'koa'
+     const app = new Koa();
+
+     app.use(async ctx => {
+       ctx.body = 'Hello World';
+     });
+
+     app.listen(3000);
+     console.log('app listening on port 3000')
+   #+END_SRC
+*** Run server
+   #+BEGIN_SRC sh
+     yarn dev
+   #+END_SRC
+*** Test on browser
+    * URL: http://localhost:3000
+*** Create github repo and project
+

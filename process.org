@@ -258,3 +258,76 @@
     #+END_SRC
 **** Running test
 **** Commit and push
+** Stage 3
+*** Add prettier
+    #+BEGIN_SRC sh
+      yarn add prettier --dev
+    #+END_SRC
+*** Write prettier.config.js file
+    #+BEGIN_SRC javascript
+          module.exports = {
+          tabWidth: 4,
+          singleQuote: true,
+              trailingComma: 'es5',
+      };
+    #+END_SRC
+*** Testing ctrl + shift + i => formmating ok!
+*** Install and config eslint
+    * Guia en esta URL: https://platzi.com/tutoriales/1339-fundamentos-javascript/2181-como-usar-eslint-y-prettier-para-mejorar-tu-codigo-javascript/
+**** Get packages
+     #+BEGIN_SRC sh
+       yarn add eslint babel-eslint --dev
+     #+END_SRC
+**** Base config
+     #+BEGIN_SRC sh
+       ./node_modules/.bin/eslint --init
+     #+END_SRC
+     * We'll have to answer some questions to configure eslint
+       * How would you like to use ESLint?
+         * > To chheck syntax, find problems and enforce code style
+         * I'm forcing myself to code things right
+       * What type of modules does your project use?
+         * JavaScript modules (import/export)
+           * Since i'm using es6...
+       * Wich framework does your project use?
+         * None of these
+           * Since this is just an api... no need for a frontend framework
+       * Where does your code run?
+         * Node
+           * Same as before
+       * How would you like to define a style for your project?
+         * Use a popular style guide
+         * Airbnb
+       * What format do you want your config file to be in
+         * Javascript
+           * For consistency with other config files
+**** Then it will ask to install coding style plugins, we say yes
+**** Pull prettier packages
+     #+BEGIN_SRC sh
+     yarn add --dev eslint-plugin-prettier eslint-config-prettier
+     #+END_SRC
+**** tweak prettier config
+     #+BEGIN_SRC javascript
+       {
+           // añade la opción "parser" con "babel-eslint"
+         "parser": "babel-eslint",
+
+         // añade "prettier" (y si quieres "prettier/react") a las opciones de "extends"
+         "extends": ["airbnb", "prettier", "prettier/react"],
+
+         // y por ultimo, en la llave de "plugins" añade el plugin de eslint para prettier
+         "plugins": ["prettier"]
+
+         // ...
+       }
+     #+END_SRC
+**** tweak package.json
+     #+BEGIN_SRC javascript
+       // package.json
+       "scripts" {
+         "lint": "eslint ./", // solo para revizar nuestros archivos
+           "lint:fix": "eslint ./ --fix" // corrigiendo errores
+       },
+     #+END_SRC
+**** restart vscode and we're ready
+

@@ -1,115 +1,260 @@
 * Process  <2019-05-03 vie> 
-** Creating first directory structure
-   Created the folder koa-graphql, then, inside, created the __tests__ and src/server directories.
-** Init the npm project
-   #+BEGIN_SRC sh
-     npm init -y
-   #+END_SRC
-** Init the git repo
-   #+BEGIN_SRC sh
-     git init
-   #+END_SRC
-** Create .gitignore
-   * Add node_modules
-** First commit
-   #+BEGIN_SRC sh
-     git add *
-     git commit -m "initial commit"
-   #+END_SRC
-** Create and checkout develop branch
-   #+BEGIN_SRC sh
-     git checkout -b develop
-   #+END_SRC
-** Install Jest
-   #+BEGIN_SRC sh
-     yarn add --dev jest
-   #+END_SRC
-** Update package.json test script
-   #+BEGIN_SRC javascript
-       "scripts": {
-           "test": "jest"        
-       } 
-   #+END_SRC
-** Create simple control test to check jest is working allright
-   #+BEGIN_SRC javascript
-     const add = (a, b) => a + b
+** Stage 1
+   * Base project setup
+*** Creating first directory structure
+    Created the folder koa-graphql, then, inside, created the __tests__ and src/server directories.
+*** Init the npm project
+    #+BEGIN_SRC sh
+      npm init -y
+    #+END_SRC
+*** Init the git repo
+    #+BEGIN_SRC sh
+      git init
+    #+END_SRC
+*** Create .gitignore
+    * Add node_modules
+*** First commit
+    #+BEGIN_SRC sh
+      git add *
+      git commit -m "initial commit"
+    #+END_SRC
+*** Create and checkout develop branch
+    #+BEGIN_SRC sh
+      git checkout -b develop
+    #+END_SRC
+*** Install Jest
+    #+BEGIN_SRC sh
+      yarn add --dev jest
+    #+END_SRC
+*** Update package.json test script
+    #+BEGIN_SRC javascript
+        "scripts": {
+            "test": "jest"        
+        } 
+    #+END_SRC
+*** Create simple control test to check jest is working allright
+    #+BEGIN_SRC javascript
+      const add = (a, b) => a + b
 
-     describe('Basic test to check testing suite is working', () => {
-         it('performs a simple add test', () => {
-             expect(add(1,2)).toBe(3)
-         })
-     })   
-   #+END_SRC
-** Run test 
-   #+BEGIN_SRC sh
-     yarn test
-   #+END_SRC
-** Commit changes
-   #+BEGIN_SRC sh
-     git add *
-     git commit -m "simple testing setted up"
-   #+END_SRC
-** Setting up es6 
-*** Following this guide:
-    * URL: https://medium.freecodecamp.org/how-to-enable-es6-and-beyond-syntax-with-node-and-express-68d3e11fe1ab
-*** Install npm-run-all for windows compatibility of the scripts to be written
-   #+BEGIN_SRC sh
-     yarn add npm-run-all
-   #+END_SRC
-*** Install babel and presets
-   #+BEGIN_SRC sh
-     yarn add --dev @babel/core @babel/cli @babel/preset-env @babel/node
-   #+END_SRC
-*** Create .babelrc file
-   #+BEGIN_SRC javascript
-     {
-         "presets": ["@babel/preset-env"]
-     }   
-   #+END_SRC
-*** Install koa
-   #+BEGIN_SRC sh
-     yarn add koa
-   #+END_SRC
-*** Add scripts to package.json
-   #+BEGIN_SRC javascript
-     "scripts": {
-       "test": "jest",
-       "server": "babel-node ./src/server",
-       "dev": "NODE_ENV=development npm-run-all server"
-     },
-   #+END_SRC
-*** Set up basic koa server for es6 testing
-   #+BEGIN_SRC javascript
-     import Koa from 'koa'
-     const app = new Koa();
-
-     app.use(async ctx => {
-       ctx.body = 'Hello World';
-     });
-
-     app.listen(3000);
-     console.log('app listening on port 3000')
-   #+END_SRC
-*** Run server
-   #+BEGIN_SRC sh
-     yarn dev
-   #+END_SRC
-*** Test on browser
-    * URL: http://localhost:3000
-*** Create github repo and project
-   #+BEGIN_SRC sh
-     git remote add origin https://github.com/ralvarezrod/koa-graphql.git
-   #+END_SRC
+      describe('Basic test to check testing suite is working', () => {
+          it('performs a simple add test', () => {
+              expect(add(1,2)).toBe(3)
+          })
+      })   
+    #+END_SRC
+*** Run test 
+    #+BEGIN_SRC sh
+      yarn test
+    #+END_SRC
 *** Commit changes
-   #+BEGIN_SRC sh
-     git add *
-     git commit -m "stage 1 completed"
-   #+END_SRC
-*** Checkout "release branch"
-   #+BEGIN_SRC sh
-     git checkout -b stage1
-   #+END_SRC
-*** Push all to github repo
+    #+BEGIN_SRC sh
+      git add *
+      git commit -m "simple testing setted up"
+    #+END_SRC
+*** Setting up es6 
+**** Following this guide:
+     * URL: https://medium.freecodecamp.org/how-to-enable-es6-and-beyond-syntax-with-node-and-express-68d3e11fe1ab
+**** Install npm-run-all for windows compatibility of the scripts to be written
+    #+BEGIN_SRC sh
+      yarn add npm-run-all
+    #+END_SRC
+**** Install babel and presets
+    #+BEGIN_SRC sh
+      yarn add --dev @babel/core @babel/cli @babel/preset-env @babel/node
+    #+END_SRC
+**** Create .babelrc file
+    #+BEGIN_SRC javascript
+      {
+          "presets": ["@babel/preset-env"]
+      }   
+    #+END_SRC
+**** Install koa
+    #+BEGIN_SRC sh
+      yarn add koa
+    #+END_SRC
+**** Add scripts to package.json
+    #+BEGIN_SRC javascript
+      "scripts": {
+        "test": "jest",
+        "server": "babel-node ./src/server",
+        "dev": "NODE_ENV=development npm-run-all server"
+      },
+    #+END_SRC
+**** Set up basic koa server for es6 testing
+    #+BEGIN_SRC javascript
+      import Koa from 'koa'
+      const app = new Koa();
+
+      app.use(async ctx => {
+        ctx.body = 'Hello World';
+      });
+
+      app.listen(3000);
+      console.log('app listening on port 3000')
+    #+END_SRC
+**** Run server
+    #+BEGIN_SRC sh
+      yarn dev
+    #+END_SRC
+**** Test on browser
+     * URL: http://localhost:3000
+**** Create github repo and project
+    #+BEGIN_SRC sh
+      git remote add origin https://github.com/ralvarezrod/koa-graphql.git
+    #+END_SRC
+**** Commit changes
+    #+BEGIN_SRC sh
+      git add *
+      git commit -m "stage 1 completed"
+    #+END_SRC
+**** Checkout "release branch"
+    #+BEGIN_SRC sh
+      git checkout -b stage1
+    #+END_SRC
+**** Push all to github repo
    #+BEGIN_SRC sh
      git push --all origin
    #+END_SRC
+** Stage 2
+   * Begin development with tdd
+*** Using this guide
+    * URL: https://mherman.org/blog/building-a-restful-api-with-koa-and-postgres/
+    * Actually that one didn't work, use this instead: https://codeburst.io/lets-build-a-rest-api-with-koa-js-and-test-with-jest-2634c14394d3
+*** Install nodemon globally
+    #+BEGIN_SRC sh
+      yarn global add nodemon
+    #+END_SRC
+*** Edit server script on package.json to use nodemon
+    #+BEGIN_SRC sh
+    "server": "nodemon --exec babel-node ./src/server"    
+#+END_SRC
+*** Install Koa Router
+    #+BEGIN_SRC sh
+      yarn add koa-router
+#+END_SRC
+*** Prepare a route for trying a jest test
+    #+BEGIN_SRC javascript
+      import Koa from "koa";
+      import Router from "koa-router";
+
+      const app = new Koa();
+      const router = new Router();
+
+      router.get('/', (ctx, next) => {
+       ctx.body = 'Hello World!';
+      });
+
+      app.use(router.routes());
+      app.use(router.allowedMethods());
+      app.listen(3000);
+      console.log('app listening on port 3000')
+    #+END_SRC
+*** Add koa logger to see event logs on console 
+    #+BEGIN_SRC sh
+      yarn add koa-logger
+#+END_SRC
+    #+BEGIN_SRC javascript
+      import logger from "koa-logger";
+      import Koa from "koa";
+      import Router from "koa-router";
+
+      const app = new Koa();
+      const router = new Router();
+
+      app.use(logger());
+
+      router.get('/', (ctx, next) => {
+       ctx.body = 'Hello World!';
+      });
+
+      app.use(router.routes());
+      app.use(router.allowedMethods());
+      app.listen(3000);
+      console.log('app listening on port 3000')
+    #+END_SRC
+*** Testing
+**** Install supertest
+    #+BEGIN_SRC sh
+      yarn add supertest --dev
+#+END_SRC
+**** Install babel-jest
+**** Exporting server from the index file 
+     #+BEGIN_SRC javascript
+       //app.listen(3000)
+       const server = app.listen(3000);
+       //...
+       export default server;
+     #+END_SRC
+**** Change .babelrc to babel.config.js
+     * This will allow me to set up different babel config for diferent env modes. For example a setup exclusive to testing... also jest was not working because of the es6 setup of the index file
+    #+BEGIN_SRC javascript
+      module.exports = function (api) {
+        api.cache(true);
+
+        const presets = [['@babel/preset-env', {targets: {node: 'current'}}]];
+        const plugins = [];
+
+        return {
+          presets,
+            plugins
+        };
+    #+END_SRC
+**** Create test file __tests__/routes.spec.js
+    #+BEGIN_SRC javascript
+      import request from "supertest";
+      import server from "../src/server/index";
+
+      beforeAll(async () => {
+          // do something before anything else runs
+          console.log("Jest starting!");
+      });
+
+      // close the server after each test
+      afterAll(() => {
+          server.close();
+          console.log("server closed!");
+      });
+
+      describe("basic route tests", () => {
+          it("get home route GET /", async () => {
+              const response = await request(server).get("/");
+              expect(response.status).toEqual(200);
+              expect(response.text).toContain("Hello World!");
+          });
+      });        
+    #+END_SRC
+**** Running test launches EADDRINUSE :::3000
+     * Says the port is in use.
+     * Killing the server and runing the tests solves the problem, but that's not cool...
+***** Solving it
+      * URL : https://blog.campvanilla.com/jest-expressjs-and-the-eaddrinuse-error-bac39356c33a
+      * So we're using a conditional app.listen depending on the env
+**** Adding conditional app.listen
+    #+BEGIN_SRC javascript
+      import logger from "koa-logger";
+      import Koa from "koa";
+      import Router from "koa-router";
+
+      const app = new Koa();
+      const router = new Router();
+
+      app.use(logger());
+
+      router.get("/", (ctx, next) => {
+          ctx.body = "Hello World!";
+      });
+
+      app.use(router.routes());
+      app.use(router.allowedMethods());
+
+      const port = process.env.NODE_ENV === 'test'
+          ? 3001
+          : 3000
+
+      const server = app.listen(port)
+      console.log("app listening on port 3000");
+
+      export default server;        
+    #+END_SRC
+**** Running test
+**** Commit and push
